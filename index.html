@@ -20,7 +20,7 @@
         </div>
 
         <div>
-            <h2>サンプルテキスト</h2>
+            <h2>サンプルテキスト１</h2>
         </div>
 
         <div>
@@ -34,6 +34,8 @@
                 <li id="3">サンプルリスト３</li>
             </ul>
         </div>
+
+        <h1 class="red">サンプルテキスト２</h1>
 
         <!-- サムライ教材は最新バージョンではないので注意 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -49,7 +51,7 @@
 
             console.log(text);
 
-            // h2のCSS操作の処理
+            // h3のCSS操作の処理
             $('h3').css('color', 'red'); //css()はcssを操作するメソッドでブラウザに表示されるテキストを赤にする
 
             // cssの複数のプロパティを操作することができる。
@@ -66,6 +68,7 @@
             （Jqueryから設定したCSSの値も取得できる）
             */
             const value = $('h2').css(['width', 'color', 'text-align']);
+
             console.log(value);
 
             /*
@@ -76,7 +79,20 @@
             $('#2').addClass('green');
             $('#3').addClass('blue');
 
-            $('h1').addClass('addRed addBox setBigText');
+            // 例えば３種類のスタイルがあったとして複数のスタイルを適用させるには下記のように記述する
+            $('h1').addClass('style1 style2 style3'); // 複数のスタイルを続けて記述するには半角スペースを挿入すること
+
+            /*
+            指定したスタイルが任意のHTML要素に設定されているかhasClassメソッドを使って
+            確認することができる。それにより目的のスタイルが設定されていなければ自動的に
+            適用させる処置が可能になる。
+            */
+            const result = $('h1').hasClass('red');
+
+            console.log(result); //trueかfalseで判別される
+            if(result) $('h1').css('color', 'blue'); //resultの値がtrueならh1がブラウザに青で表示される
+
+
 
         </script>
     </body>
