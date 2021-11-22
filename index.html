@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Jqueryの練習</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div>
+            <h1 id="title">タイトル</h1>
+            <p class="message">こんにちは</p>
+        </div>
+
+        <div>
+            <ul>
+                <li class="list-test">項目１</li>
+                <li class="sample-list">項目２</li>
+                <li class="sample-list">項目３</li>
+            </ul>
+        </div>
+
+        <div>
+            <h2>サンプルテキスト</h2>
+        </div>
+
+        <div>
+            <h3>サンプルテキストだよ</h3>
+        </div>
+
+        <div>
+            <ul>
+                <li id="1">サンプルリスト１</li>
+                <li id="2">サンプルリスト２</li>
+                <li id="3">サンプルリスト３</li>
+            </ul>
+        </div>
+
+        <!-- サムライ教材は最新バージョンではないので注意 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            const title = $('#title').text(); //text()はHTML要素のテキスト部分を取得するメソッド
+            const list = $('.message').text();
+
+            console.log(title);
+            console.log(list);
+
+            // 属性フィルターを使ってclass属性値の先頭が「sample」の要素だけを抽出する
+            const text = $('li[class^="sample"]').text();
+
+            console.log(text);
+
+            // h2のCSS操作の処理
+            $('h3').css('color', 'red'); //css()はcssを操作するメソッドでブラウザに表示されるテキストを赤にする
+
+            // cssの複数のプロパティを操作することができる。
+            $('h2').css({
+                'width': '400px',
+                'color': '#fff',
+                'text-align': 'center',
+                'border': '1px solid #333',
+                'background-color': '#f00'
+            });
+
+            /*
+            任意のHTML要素に設置されているCSSプロパティの値を取得する
+            （Jqueryから設定したCSSの値も取得できる）
+            */
+            const value = $('h2').css(['width', 'color', 'text-align']);
+            console.log(value);
+
+            /*
+            設定されたスタイルを使ってJqueryから任意の要素にCSSを適用させるには
+            addClass()メソッドを使う。
+            */
+            $('#1').addClass('red');
+            $('#2').addClass('green');
+            $('#3').addClass('blue');
+
+            $('h1').addClass('addRed addBox setBigText');
+
+        </script>
+    </body>
+</html>
