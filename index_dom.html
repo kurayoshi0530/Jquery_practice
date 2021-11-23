@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Jqueryの練習</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>DOMについて</h1>
+        <h2>jqueryを勉強中</h2>
+
+        <ul>
+            <li>Python</li>
+            <li>Ruby</li>
+            <li>PHP</li>
+        </ul>
+
+        <!-- 下記コードはあらかじめdisplay: none;と設定しておくことでP要素を非表示にしている -->
+        <p style="display: none; color: red">入力されたパスワードが違います</p>
+
+
+        <!-- サムライ教材は最新バージョンではないので注意 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            const h2 = $('h2').text();
+
+            console.log(h2);
+
+            /*
+            下記コードではtext()の引数に新しい文字列を指定している。
+            このように記述すれば、HTML要素内のテキストを後から好きな文字列に変更できる。
+            */
+            $('h2').text('jqueryを毎日勉強しています！');
+
+            /*
+            JqueryでHTML要素を生成する。
+            */
+            const list = $('<li>',{
+                text: 'JavaScript'
+            });
+
+            // 下記コードで生成した要素を表示させる。末尾に付け加える。
+            $('ul').append(list); //appendアペンド（付け加える）
+
+            // 下記コードでHTML要素の生成と追加を同時に行う事ができる。
+            $('ul').prepend('<li>Node.js</li>'); //prependで先頭に付け加える。（他にも類似メソッドがある。）
+
+            /*
+            P要素にshowメソッドを実行させることで非表示だった要素が表示される
+            逆にhideメソッドだと要素を非表示にする
+            */
+            $('p').show();
+        </script>
+    </body>
+</html>
