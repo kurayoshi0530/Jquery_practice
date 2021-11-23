@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Jqueryの練習 DOM操作のまとめ</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+    <!-- サムライ教材は最新バージョンではないので注意 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        // オブジェクト作成 {}の中がオブジェクトとして扱われる
+        const user = {
+
+            name: '太郎',
+            age: 30,
+            area: '東京都',
+
+        };
+
+        // user.nameを上書き変更する
+        user.name = '山田太郎';
+
+        // hobbyプロパティを追加
+        user.hobby = '映画鑑賞';
+
+        // areaプロパティを削除
+        delete user.area;
+
+        console.log(user);
+        // オブジェクトのプロパティの値を取得
+        console.log(user.name);
+        console.log(user.age);
+        console.log(user.area);
+        console.log(user.hobby);
+
+        // メソッドを使ってユーザーの名前を取得する
+        const user1 = {
+
+            name: '山田太郎',
+            age: 30,
+
+            getName: function() {
+                console.log(this.name); //thisはオブジェクト内を指す。つまり{}内のuserオブジェクトのnameプロパティを指す。
+            }
+        }
+
+        user1.getName();
+
+        // 下記はthisの中身は使い方が変わるだけで中身が変わる代表的な例
+        const obj = {
+
+            getThis1: function() { return this},
+
+            getThis2: () => this
+
+        };
+
+        console.log(obj.getThis1());
+        console.log(obj.getThis2());
+    </script>
+    </body>
+</html>
