@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Jqueryの練習 DOM操作のまとめ</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <form>
+            名前:<input type="text" name="username">
+            <input type="button" value="確認">
+        </form>
+
+        <form>
+            <input type="radio" name="sex" value="male">男
+            <input type="radio" name="sex" value="female">女
+
+            <input type="button" value="確認">
+        </form>
+
+        <form>
+            趣味:
+            <input type="checkbox" name="hobby" value="book">読書
+            <input type="checkbox" name="hobby" value="music">音楽
+            <input type="checkbox" name="hobby" value="movie">映画
+            <input type="checkbox" name="hobby" value="walk">散歩
+
+            <input type="button" value="確認">
+        </form>
+
+        <!---------- 特定の条件でフォーム要素を表示させる ---------->
+        <div class=sample1>
+            <p style="color: red;">特定の条件でフォーム要素を表示させる</p>
+            <form>
+                性別:
+                <input type="radio" name="sex" value="male">男
+                <input type="radio" name="sex" value="female">女
+
+                <!-- テキストボックスを挿入するためのdivタグ -->
+                <div id="box"></div>
+            </form>
+        </div>
+
+        <!-- 選択できるチェックボックスの数を制限する -->
+        <div class=sample2>
+            <p style="color: red;">選択できるチェックボックスの数を制限する</p>
+            <form>
+                趣味:
+                <input type="checkbox" name="hobby" value="book">本
+                <input type="checkbox" name="hobby" value="music">音楽
+                <input type="checkbox" name="hobby" value="movie">映画
+                <input type="checkbox" name="hobby" value="walk">散歩
+                <input type="checkbox" name="hobby" value="manga">漫画
+                <input type="checkbox" name="hobby" value="cook">料理
+            </form>
+        </div>
+
+
+
+    <!-- サムライ教材は最新バージョンではないので注意 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        /*
+        テキストボックスの値を取得する
+        */
+       $('[type="button').click(() => {
+
+        // テキストボックスの値を取得する
+        const result = $('[name="username"]').val(); //valメソッドで値を取得する
+
+        console.log(result);
+       })
+
+       /*
+       ラジオボタンで選択された要素の値を取得する
+       */
+        $('input[type="button"]').on('click', () => {
+
+        // checkedプロパティがtrueになった要素の値を取得する
+        const result = $('[name="sex"]:checked').val();
+
+        console.log(result)
+        })
+
+        /*
+        チェックボックスで選択された複数の要素の値を取得する
+        */
+        $('[type="button"]').on('click', () => {
+
+            // each()を使って選択されたすべたの値を取得する
+            $('[name="hobby"]:checked').each(function() {
+
+                // $(this)は一つずつの選択された要素を意味する
+                console.log( $(this).val() );
+            })
+        })
+
+        /*
+        特定の条件でフォーム要素を表示させる
+        */
+        $('[name="sex"]').on('change', function() { // ラジオボタンが選択された瞬間に処理が実行される
+
+            if ($(this).val() === 'male') {
+                $('#box').append('名前:<input type="text"/>');
+            } else {
+                $('#box').empty(); // 女が選択された場合テキストボックスを表示しないようにするためemptyメソッドで要素自体を削除
+            }
+
+        })
+
+        /*
+        選択できるチェックボックスの数を制限する
+        */
+        $('[name="hobby"]').on('change', function() {
+
+        // lengthプロパティを使って要素の選択数を取得して数を検証する
+        if($('[name="hobby"]:checked').length > 3) {
+
+            $(this).prop('checked', false); //選択しようとした要素が選択できないようにする
+
+            alert('３つまでしか選択できません'); //アラートメッセージを表示させる
+        }
+    });
+    </script>
+    </body>
+</html>
