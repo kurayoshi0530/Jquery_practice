@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Jqueryの練習 DOM操作のまとめ</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            img {
+                width: 30px; /* 画面サイズを縮小にする */
+                opacity: 0; /* 透明にして見えないようにする */
+            }
+            h1 {
+                position: absolute;
+                color: lightgreen;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>こんにちは</h2>
+
+        <!-- 複数のCSSプロパティを指定してアニメーションを実装する -->
+        <div class="sample1">
+            <p style="color: red;">サンプル画像表示</p>
+            <img src="fox.webp" width="50" />
+        </div>
+
+        <!-- アニメーションを連続で実行させる -->
+        <div class="sample2">
+            <h1 id="text">こんにちは</h1>
+        </div>
+    <!-- サムライ教材は最新バージョンではないので注意 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        /*
+        テキストを大きくさせるアニメーション
+        */
+        $('h2').animate({fontSize: '80px'}, 2000);
+
+        /*
+        複数のCSSプロパティ（オブジェクト形式で作成）を指定してアニメーションを実装する
+        */
+        $('img').animate({
+            opacity: 1, // 画像を見えるようにする
+            width: 100, // 画像サイズを大きくする
+            mardinLeft: '200px' // 画像を右方向に移動させる
+        }, 2000); // 2秒かけてアニメーション
+
+        /*
+        連続でアニメーションを実行させるにはanimate()メソッドを続けて記述するだけ
+        */
+        $('#text')
+            .animate({left: '90%'}, 1000)
+            .animate({left: '40%'}, 1500)
+            .animate({fontSize: '8em'}, 500)
+            .animate({left: '60%', top: '40%'}, 300)
+            .animate({left: 0, top: 0, fontSize: '1em'}, 1000)
+
+    </script>
+    </body>
+</html>
